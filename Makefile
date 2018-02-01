@@ -18,13 +18,14 @@ all:
 
 rpm:
 	test -d build || mkdir build
-	frpm -f -s dir -t rpm -n $(PKG_NAME) -v $(PKG_VERSION) -a all -p build \
+	fpm -f -s dir -t rpm -n $(PKG_NAME) -v $(PKG_VERSION) -a all -p build \
 		-d dkms -d make -d automake -d gcc -d gcc-c++ -d kernel-devel -d kernel-headers \
 		-m $(MAINTAINER) --vendor ponyfleisch --license GPLv2 --description $(PKG_DESCRIPTION) \
 		--url $(HOMEPAGE) --rpm-changelog CHANGELOG \
 		--post-install scripts/post-install-fedora.sh \
-		--pre-uninstall scripts/pre-uninstall--fedora.sh \
+		--pre-uninstall scripts/pre-uninstall-fedora.sh \
 		--exclude '.git*' usr/
 
 clean:
 	rm -f build/$(PKG_NAME)_$(PKG_VERSION)_all.deb
+	rm -f build/$(PKG_NAME)-$(PKG_VERSION)-1.noarch.rpm
