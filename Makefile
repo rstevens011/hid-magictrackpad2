@@ -22,7 +22,8 @@ rpm:
 		-d dkms -d make -d automake -d gcc -d gcc-c++ -d kernel-devel -d kernel-headers \
 		-m $(MAINTAINER) --vendor ponyfleisch --license GPLv2 --description $(PKG_DESCRIPTION) \
 		--url $(HOMEPAGE) --rpm-changelog CHANGELOG \
-		--post-install scripts/post-install.sh --pre-uninstall scripts/pre-uninstall.sh \
+		--post-install scripts/post-install-fedora.sh \
+		--pre-uninstall scripts/pre-uninstall--fedora.sh \
 		--exclude '.git*' usr/
 
 clean:
